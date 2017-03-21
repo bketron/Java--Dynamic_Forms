@@ -4,28 +4,31 @@ $(document).ready(function(){
 
 		data.forEach(function(field){
 
-			if ( field.type === 'text' || field.type === 'email' || field.type === 'tel'){
-				htmlStr += `<input type="${field.type}" placeholder="${field.label}" id="${field.id}"></input>`
+			if (field.type === 'text' || field.type === 'email' || field.type === 'tel'){
+				htmlStr += `<div class="field"><i class="fa ${field.icon}" aria-hidden="true"></i><input type="${field.type}" placeholder="${field.label}" id="${field.id}" /></div>`
 			}	
 
-			if ( field.type === 'select') {
-				htmlStr += `<select id=${field.id}
-					<option value=''>${field.label}</option>`
+			if (field.type === 'select') {
+				htmlStr += `<select id=${field.id}>
+						<option value=''>${field.label}</option>`
 
-					field.options.forEach(function(option){
-						htmlStr += `<option value="${option.value}"">${option.label}</option>`
-					})
+				field.options.forEach(function(option){
+					htmlStr += `<option value="${option.value}">${option.label}</option>`
+				})
 
-				htmlStr =+ `</select>`
+				htmlStr += `</select>`
 
 			}
 
 			if (field.type === 'textarea') {
-				htmlStr += `<textarea id="${field.id}" placeholder="${field.label}"></textarea>`
+				htmlStr += `<div class="field"><i class="fa fa-comments" aria-hidden="true"></i>
+<textarea id="${field.id}" placeholder="${field.label}"></textarea></div>`
 
 			}
 
 		})
+
+		htmlStr += `<button type="submit">Submit Form</button>`
 
 		$("#app").html(htmlStr)
 	})
